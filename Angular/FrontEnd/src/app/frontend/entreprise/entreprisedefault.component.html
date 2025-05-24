@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <img src="/assets/frontend/img/esprit.jpg" alt="Logo" height="50">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Offres</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Entreprise</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <!-- Sidebar for Entreprise Details -->
+            <div class="col-lg-3">
+                <div class="sidebar" style="position: fixed; left: 0; top: 96px; bottom: 0; width: 300px; padding: 20px; background-color: #f8f9fa; box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);">
+                    <h4 class="text-center" style="font-size: 24px; font-weight: bold;">{{ entreprise?.nom }}</h4>
+                    <div class="card-body">
+                        <h5 class="text-center">
+                            <img [src]="entreprise?.logoUrl" alt="Logo" height="100">
+                        </h5>
+                        <p class="text-center" style="font-size: 18px;"><strong>Adresse:</strong> {{ entreprise?.adress }}</p>
+                        <p class="text-center" style="font-size: 18px;"><strong>Description:</strong> {{ entreprise?.description }}</p>
+                        
+                        <p class="text-center" style="font-size: 18px;"><strong>Site Web:</strong> <a href="{{ entreprise?.website }}" class="text-decoration-none" style="color: #007bff;">{{ entreprise?.website }}</a></p>
+                    </div>
+                </div>
+            </div>
+            <!-- End Sidebar for Entreprise Details -->
+
+            <!-- Table for Offers -->
+            <div class="col-lg-9">
+                <h2 class="text-center">Mes offres</h2>
+                <table class="table table-bordered mt-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">Titre</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Durée</th>
+                            <th scope="col">Type</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let offre of offres">
+                            <td>{{ offre.titre }}</td>
+                            <td>{{ offre.description }}</td>
+                            <td>{{ offre.duration }}</td>
+                            <td>{{ offre.type }}</td>
+                            <td>
+                                <button class="btn btn-primary" >Modifier</button>
+                                
+                                <button class="btn btn-danger" (click)="deleteOffre(offre.idOffre)">Supprimer</button>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="/offres/ajout" class="btn btn-primary">Ajouter une Offre</a>
+            </div>
+            <!-- End Table for Offers -->
+        </div>
+    </div>
+</div>

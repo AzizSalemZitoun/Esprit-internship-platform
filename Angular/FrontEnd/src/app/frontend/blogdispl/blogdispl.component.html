@@ -1,0 +1,186 @@
+<section class="blog py-5">
+  <div class="container">
+      <div class="row">
+          <!-- Blog Posts Section -->
+          <div class="col-lg-8">
+              <div class="blog-section-title text-center mb-4">
+                  <h2 class="text-primary">Latest Articles</h2>
+                  <p class="text-muted">Stay updated with the latest news</p>
+              </div>
+
+              <div class="row">
+                  <!-- Loop through paginated blogs -->
+                  <div class="col-md-6 mb-4" *ngFor="let blog of paginatedBlogs">
+                      <div class="card blog-card shadow-sm">
+                          <div class="card-body">
+                              <h5 class="card-title">{{ blog.title }}</h5>
+                              <p class="text-muted small">Posted on {{ blog.createdAt | date:'MMMM d, y' }}</p>
+                              <p class="card-text">{{ blog.content }}</p>
+                              <img *ngIf="blog.image" [src]="blog.image" alt="Blog Image" class="card-img-top blog-image" />
+
+<style>
+  .blog-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+button.btn {
+  border-radius: 20px;
+}
+
+.btn-primary {
+  background-color: #0056b3;
+  border-color: #004a9f;
+}
+
+.btn-danger {
+  background-color: #C00000;
+  border-color: #a00000;
+}
+</style>
+                                  <div class="d-flex justify-content-between mt-3">
+      <button class="btn btn-primary btn-sm px-4" (click)="openUpdateModal(blog)">
+        <i class="fas fa-edit me-1"></i> Update
+      </button>
+      <button class="btn btn-danger btn-sm px-4" (click)="deleteBlog(blog.idblog)">
+        <i class="fas fa-trash me-1"></i> Delete
+      </button>
+    </div>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+      <!-- Custom Pagination -->
+<div class="custom-pagination">
+  <button 
+      class="btn btn-secondary" 
+      [disabled]="currentPage === 1" 
+      (click)="changePage(currentPage - 1)">
+      Previous
+  </button>
+
+  <span class="pagination-info">
+      Page {{ currentPage }} of {{ totalPages }}
+  </span>
+
+  <button 
+      class="btn btn-secondary" 
+      [disabled]="currentPage === totalPages" 
+      (click)="changePage(currentPage + 1)">
+      Next
+  </button>
+</div>
+
+<!-- Page Number Buttons 
+<div class="page-numbers">
+  <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+      <button 
+          class="btn" 
+          [ngClass]="{'btn-primary': currentPage === i + 1, 'btn-light': currentPage !== i + 1}" 
+          (click)="changePage(i + 1); $event.preventDefault()">
+          {{ i + 1 }}
+      </button>
+  </ng-container>
+</div>-->
+
+          </div>
+
+          <!-- Sidebar: Trending Posts (Static) -->
+          <div class="col-lg-4">
+              <div class="blog-post-widget p-4 bg-light rounded shadow-sm">
+                  <h4 class="mb-3 text-primary">Trending Posts</h4>
+                  <div class="d-flex mb-3">
+                      <div>
+                          <h6>Trending Blog Title</h6>
+                          <p class="text-muted small"><i class="fa fa-clock-o"></i> October 19, 2020</p>
+                      </div>
+                  </div>
+                  <!-- Add more static trending posts as needed -->
+              </div>
+          </div>
+      </div>
+  </div><!-- Update Modal -->
+  <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="updateModalLabel">Update Blog</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <form (ngSubmit)="onUpdateSubmit()" #updateForm="ngForm">
+                      <div class="mb-3">
+                          <label for="blogTitle" class="form-label">Title</label>
+                          <input 
+                            type="text" 
+                            class="form-control" 
+                            id="blogTitle" 
+                            [(ngModel)]="selectedBlog.title" 
+                            name="title" 
+                            required 
+                            minlength="5" 
+                            maxlength="100" 
+                            #titleInput="ngModel"
+                          />
+                          <div *ngIf="titleInput.invalid && (titleInput.dirty || titleInput.touched)" class="text-danger">
+                              <div *ngIf="titleInput.errors?.['required']">Title is required.</div>
+                              <div *ngIf="titleInput.errors?.['minlength']">Title must be at least 5 characters long.</div>
+                              <div *ngIf="titleInput.errors?.['maxlength']">Title cannot exceed 100 characters.</div>
+                          </div>
+                      </div>
+                      <div class="mb-3">
+                          <label for="blogCategory" class="form-label">Category</label>
+                          <select class="form-select" id="blogCategory" [(ngModel)]="selectedBlog.category" name="category" required>
+                              <option value="" disabled selected>Choose a category</option>
+                              <option value="ADVICE">ADVICE</option>
+                              <option value="ACTUALITE">ACTUALITE</option>
+                          </select>
+                      </div>
+                      <div class="mb-3">
+                          <label for="blogContent" class="form-label">Write your blog</label>
+                          <textarea 
+                            class="form-control" 
+                            id="blogContent" 
+                            rows="5" 
+                            [(ngModel)]="selectedBlog.content" 
+                            name="content" 
+                            required 
+                            minlength="10" 
+                            maxlength="2000" 
+                            #contentInput="ngModel"
+                          ></textarea>
+                          <div class="mb-3">
+                            <label for="blogImage" class="form-label">Image URL</label>
+                            <input 
+                              type="text" 
+                              class="form-control" 
+                              id="blogImage" 
+                              [(ngModel)]="selectedBlog.image" 
+                              name="image"
+                            />
+                          </div>
+                          <div *ngIf="contentInput.invalid && (contentInput.dirty || contentInput.touched)" class="text-danger">
+                              <div *ngIf="contentInput.errors?.['required']">Content is required.</div>
+                              <div *ngIf="contentInput.errors?.['minlength']">Content must be at least 10 characters long.</div>
+                              <div *ngIf="contentInput.errors?.['maxlength']">Content cannot exceed 2000 characters.</div>
+                          </div>
+                      </div>
+                      <div class="text-center">
+                          <button type="submit" class="btn btn-lg" style="background-color: #C00000; color: white;" [disabled]="updateForm.invalid">
+                              <i class="fas fa-upload"></i> Update Blog
+                          </button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div></section>

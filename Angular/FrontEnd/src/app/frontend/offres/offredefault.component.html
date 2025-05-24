@@ -1,0 +1,97 @@
+<link rel="stylesheet" href="/offres/offresdefault.component.css">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <img src="/assets/frontend/img/esprit.jpg" alt="Logo" height="50">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/offres">Offres</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/entreprise">Entreprise</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <!-- Offres List Section Start -->
+            <div class="col-lg-12">
+                <div class="card p-4">
+                    <h4 class="mb-4" style="color: #d32f2f; font-weight: bold;">Liste des Offres de Stage</h4>
+
+                    <!-- Advanced Search Bar -->
+                    <div class="mb-4">
+                        <input type="text" class="form-control" placeholder="Rechercher par titre..." [(ngModel)]="searchTitre" (input)="filterOffres()">
+                    </div>
+                    <div class="mb-4">
+                        <select class="form-control" [(ngModel)]="searchType" (change)="filterOffres()">
+                            <option value="">Tous les types</option>
+                            <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <select class="form-control" [(ngModel)]="searchCompetence" (change)="filterOffres()">
+                            <option value="">Toutes les compétences</option>
+                            <option *ngFor="let competence of availableCompetences" [value]="competence">{{ competence }}</option>
+                        </select>
+                    </div>
+
+                    <!-- Offres List Start -->
+                    <div class="offre-list">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Durée</th>
+                                    <th>Competences</th>
+                                    <th>Type</th>
+                                    <th>Entreprise</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let offre of filteredOffres">
+                                    <td>{{ offre.titre }}</td>
+                                    <td>{{ offre.description }}</td>
+                                    <td>{{ offre.duration }}</td>
+                                    <td>{{ offre.competences?.join(', ') || 'N/A' }}</td>
+                                    <td>{{ offre.type || 'N/A' }}</td>
+                                    <td>{{ offre.entreprise?.nom || 'N/A' }}</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm" (click)="navigateToModifier(offre)">Modifier</button>
+                                        <button class="btn btn-danger btn-sm" (click)="deleteOffre(offre.idOffre)">Supprimer</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Offres List End -->
+
+                    
+
+                </div>
+            </div>
+            <!-- Offres List Section End -->
+        </div>
+    </div>
+</div>

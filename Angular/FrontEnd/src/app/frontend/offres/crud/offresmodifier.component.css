@@ -1,0 +1,132 @@
+
+body {
+    background-color: #f8f9fa; 
+    font-family: Arial, sans-serif;
+    color: #333; 
+}
+.competence-bubbles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.bubble {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #d32f2f; /* Your specified red */
+    border-radius: 20px;
+    font-size: 14px;
+    color: white; /* White text for better contrast */
+    cursor: pointer;
+}
+
+.bubble .remove-bubble {
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white; /* White "×" for better contrast */
+}
+
+.bubble .remove-bubble:hover {
+    color: #ff6666; /* Lighter red hover color for the "×" */
+}
+
+.available-competences {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.available-competences .bubble {
+    background-color: #ff6666; /* Lighter red for available competences */
+    cursor: pointer;
+}
+
+.available-competences .bubble:hover {
+    background-color: #d32f2f; /* Your specified red for hover */
+}
+
+.navbar {
+    background-color: #d32f2f; 
+    color: white;
+}
+.navbar-brand img {
+    width: 150px;  
+    height: auto;  
+}
+
+.navbar .navbar-brand {
+    color: white;
+    font-weight: bold;
+}
+
+.navbar .nav-link {
+    color: white;
+}
+
+.navbar .nav-link {
+    color: #ffccbc; 
+}
+
+.container-fluid.py-5 {
+    background-color: #ffffff; 
+}
+
+.card {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+h4.mb-4 {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+
+form .mb-3 {
+    margin-bottom: 1.5rem;
+}
+
+form .form-label {
+    color: #333; 
+    font-weight: bold;
+}
+
+form .form-control {
+    background-color: #f8f9fa; 
+    border: 1px solid #ddd; 
+    border-radius: 5px;
+}
+
+form .form-control:focus {
+    border-color: #d32f2f; 
+    box-shadow: 0 0 5px rgba(211, 47, 47, 0.5);
+}
+
+button.btn.btn-primary {
+    background-color: #d32f2f; 
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    color: white;
+}
+
+button.btn.btn-primary:hover {
+    background-color: #b71c1c; 
+}
+
+@media (max-width: 768px) {
+    .navbar .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .card {
+        padding: 20px;
+    }
+    
+}

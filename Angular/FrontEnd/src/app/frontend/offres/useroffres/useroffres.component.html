@@ -1,0 +1,89 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <img src="/assets/frontend/img/esprit.jpg" alt="Logo" height="50">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/offres">Offres</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/entreprise">Entreprise</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Offers Section -->
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-12">
+                <div class="card p-4">
+                    <h4 class="mb-4" style="color: #d32f2f; font-weight: bold;">Liste des Offres de Stage</h4>
+
+                    <!-- Advanced Search Bar -->
+                    <div class="mb-4">
+                        <input type="text" class="form-control" placeholder="Rechercher par titre..." [(ngModel)]="searchTitre" (input)="filterOffres()">
+                    </div>
+                    <div class="mb-4">
+                        <select class="form-control" [(ngModel)]="searchType" (change)="filterOffres()">
+                            <option value="">Tous les types</option>
+                            <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Compétences</label>
+                        <div class="competence-checkboxes">
+                            <div *ngFor="let competence of availableCompetences" class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    [id]="competence"
+                                    [value]="competence"
+                                    [checked]="selectedCompetences.includes(competence)"
+                                    (change)="toggleCompetence(competence)"
+                                >
+                                <label class="form-check-label" [for]="competence">{{ competence }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div *ngFor="let offre of filteredOffres" class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ offre.titre }}</h5>
+                                    <p class="card-text">{{ offre.description }}</p>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><strong>Durée:</strong> {{ offre.duration }}</li>
+                                        <li class="list-group-item"><strong>Compétences:</strong> {{ offre.competences?.join(', ') || 'N/A' }}</li>
+                                        <li class="list-group-item"><strong>Type:</strong> {{ offre.type || 'N/A' }}</li>
+                                        <li class="list-group-item"><strong>Entreprise :</strong> {{ offre.entreprise.nom || 'N/A' }}</li>
+                                        <li class="list-group-item qr-code-container">
+                                            <img [src]="generateQrCodeUrl(offre.entreprise.idEntreprise)" alt="QR Code">
+                                        </li>
+                                        <button (click)="postuler(offre.id)">Postuler</button>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

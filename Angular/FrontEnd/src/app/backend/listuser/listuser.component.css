@@ -1,0 +1,31 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.pagination-controls .ngx-pagination a,
+.pagination-controls .ngx-pagination button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.pagination-controls .ngx-pagination a:hover,
+.pagination-controls .ngx-pagination button:hover {
+  background-color: #0056b3;
+}
+
+.pagination-controls .ngx-pagination .current {
+  background-color: #28a745;
+  font-weight: bold;
+}

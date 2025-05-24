@@ -1,0 +1,6 @@
+canvas {
+    max-width: 400px;  /* Largeur maximale */
+    max-height: 300px;  /* Hauteur maximale */
+    margin: auto;
+    display: block;
+  }

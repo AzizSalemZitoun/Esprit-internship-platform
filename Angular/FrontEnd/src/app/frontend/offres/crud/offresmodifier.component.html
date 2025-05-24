@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier une Offre</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/offres/crud/offresmodifier.component.css">
+</head>
+<body>
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/assets/frontend/img/esprit.jpg" alt="Logo" height="30">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/offres">Offres</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+   
+    <div class="card p-4">
+        <h4 class="mb-4">Modifier l'Offre</h4>
+        <form (ngSubmit)="onUpdate()">
+          <div class="mb-3">
+            <label for="titre" class="form-label">Titre de l'Offre</label>
+            <input type="text" class="form-control" id="titre" [(ngModel)]="offre.titre" name="titre" placeholder="Entrez le titre de l'offre" required>
+          </div>
+      
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" [(ngModel)]="offre.description" name="description" placeholder="Entrez la description" required></textarea>
+          </div>
+      
+          <div class="mb-3">
+            <label for="type" class="form-label">Type</label>
+            <select class="form-control" id="type" [(ngModel)]="offre.type" name="type" required>
+              <option *ngFor="let t of types" [value]="t">{{ t }}</option>
+            </select>
+          </div>
+          
+      
+          <div class="mb-3">
+            <label for="duration" class="form-label">Durée</label>
+            <input type="text" class="form-control" id="duration" [(ngModel)]="offre.duration" name="duration" placeholder="Entrez la durée de l'offre" required>
+          </div>
+          <div class="mb-3">
+            <label for="competences" class="form-label">Compétences</label>
+            <div class="competence-bubbles">
+                <!-- Display selected competences as bubbles -->
+                <div *ngFor="let competence of selectedCompetences" class="bubble">
+                    {{ competence }}
+                    <span (click)="removeCompetence(competence)" class="remove-bubble">&times;</span>
+                </div>
+            </div>
+            <!-- List of available competences -->
+            <div class="available-competences">
+                <div *ngFor="let competence of availableCompetences" class="bubble" (click)="addCompetence(competence)">
+                    {{ competence }}
+                </div>
+            </div>
+        </div>
+      
+          <button type="submit" class="btn btn-primary">Mettre à Jour</button>
+          <button type="button" class="btn btn-secondary ms-2" (click)="cancel()">Cancel</button>
+        </form>
+      </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

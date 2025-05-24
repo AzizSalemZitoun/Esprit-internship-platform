@@ -1,0 +1,87 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.navbar {
+    background-color: #808080; /* Grey background */
+    color: white;
+}
+
+.navbar-brand img {
+    width: 150px;
+    height: auto;
+}
+
+.navbar .navbar-brand {
+    color: white;
+    font-weight: bold;
+}
+
+
+
+.container-fluid.py-5 {
+    background-color: #ffffff;
+}
+
+.card {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h4.mb-4 {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+.offre-item {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.offre-item .offre-title {
+    color: #d32f2f;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.offre-item .offre-company,
+.offre-item .offre-location,
+.offre-item .offre-description {
+    color: #333;
+    margin-top: 10px;
+}
+
+.offre-item button {
+    background-color: #d32f2f;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.offre-item button:hover {
+    background-color: #b71c1c;
+}
+
+@media (max-width: 768px) {
+    .navbar .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .navbar-brand img {
+        width: 150px;
+        height: auto;
+    }
+}

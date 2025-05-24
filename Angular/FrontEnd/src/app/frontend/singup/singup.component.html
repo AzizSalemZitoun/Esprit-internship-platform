@@ -1,0 +1,475 @@
+<!-- Topbar Start -->
+
+<!-- Topbar End -->
+
+
+<!-- Navbar Start -->
+
+<!-- Navbar End -->
+
+
+<!-- Full Screen Search Start -->
+<div class="modal fade" id="searchModal" tabindex="-1">
+  <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+          <div class="modal-header border-0">
+              <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body d-flex align-items-center justify-content-center">
+              <div class="input-group" style="max-width: 600px;">
+                  <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
+                  <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Full Screen Search End -->
+
+
+<!-- Contact Start -->
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+  <div class="container py-5">
+      <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+          <h5 class="fw-bold text-primary text-uppercase">Contact Us</h5>
+          <h1 class="mb-0">ESPRIT ... Se Former autrement pour une nouvelle génération d'ingénieurs.</h1>
+      </div>
+      <div class="row g-5 mb-5">
+          <div class="col-lg-4">
+              <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.1s">
+                  <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                      <i class="fa fa-phone-alt text-white"></i>
+                  </div>
+                  <div class="ps-4">
+                      <h5 class="mb-2">Call to ask any question</h5>
+                      <h4 class="text-primary mb-0">(+216) 70 250 000</h4>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-4">
+              <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.4s">
+                  <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                      <i class="fa fa-envelope-open text-white"></i>
+                  </div>
+                  <div class="ps-4">
+                      <h5 class="mb-2">Email to get free quote</h5>
+                      <h4 class="text-primary mb-0">contact&#64;esprit.tn</h4>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-4">
+              <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.8s">
+                  <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                      <i class="fa fa-map-marker-alt text-white"></i>
+                  </div>
+                  <div class="ps-4">
+                      <h5 class="mb-2">Visit our office</h5>
+                      <h4 class="text-primary mb-0">1, 2 rue André Ampère - 2083 - Pôle Technologique - El Ghazala.</h4>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="progress-container">
+        <div class="progress-bar" [style.width.%]="progress"></div>
+        <div class="step" [class.active]="currentStep >= 1">1</div>
+        <div class="step" [class.active]="currentStep >= 2">2</div>
+      </div>
+      <div class="row g-5">
+        <div class="col-lg-6 wow slideInUp" data-wow-delay="0.3s">
+          <form (ngSubmit)="signup()" #signupForm="ngForm">
+            <div class="row g-3">
+              <!-- ÉTAPE 1: Informations personnelles -->
+              <div *ngIf="currentStep === 1">
+                <!-- Nom & Prénom -->
+                <div class="row g-3">
+                  <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control border-0 bg-light px-4"
+                      placeholder="First Name" style="height: 55px;"
+                      [(ngModel)]="signupRequest.nom" name="nom" required #nom="ngModel">
+                    <p *ngIf="nom.invalid && nom.touched" class="text-danger small mt-1">⚠️ Le nom est requis.</p>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control border-0 bg-light px-4"
+                      placeholder="Last Name" style="height: 55px;"
+                      [(ngModel)]="signupRequest.prenom" name="prenom" required #prenom="ngModel">
+                    <p *ngIf="prenom.invalid && prenom.touched" class="text-danger small mt-1">⚠️ Le prénom est requis.</p>
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div class="row g-3">
+                  <div class="col-12 mb-3">
+                    <input type="email" class="form-control border-0 bg-light px-4"
+                      placeholder="Your Email" style="height: 55px;"
+                      [(ngModel)]="signupRequest.email" name="email" required email #email="ngModel">
+                    <p *ngIf="email.invalid && email.touched" class="text-danger small mt-1">⚠️ Email invalide.</p>
+                  </div>
+                </div>
+
+                <!-- Mot de passe & Confirmation -->
+                <div class="row g-3">
+                  <div class="col-md-6 mb-3">
+                    <input type="password" class="form-control border-0 bg-light px-4"
+                      placeholder="Password" style="height: 55px;"
+                      [(ngModel)]="signupRequest.password" name="password" required minlength="6" #password="ngModel">
+                    <p *ngIf="password.invalid && password.touched" class="text-danger small mt-1">
+                      ⚠️ Le mot de passe doit contenir au moins 6 caractères.
+                    </p>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <input type="password" class="form-control border-0 bg-light px-4"
+                      placeholder="Confirm Password" style="height: 55px;"
+                      [(ngModel)]="confirmPassword" name="confirmPassword" required #confirmPasswordField="ngModel">
+                    <p *ngIf="passwordMismatch && confirmPasswordField.touched" class="text-danger small mt-1">
+                      ⚠️ Les mots de passe ne correspondent pas !
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Sélection du rôle -->
+                <div class="row g-3">
+                  <div class="col-md-12 mb-3">
+                    <select class="form-control border-0 bg-light px-4"
+                      style="height: 55px;" [(ngModel)]="signupRequest.role"
+                      name="role" required #role="ngModel" (change)="onRoleChange()">
+                      <option value="">Select Role</option>
+                      <option value="ETUDIANT">Étudiant</option>
+                      <option value="RESPONSABLE_ENTREPRISE">Entreprise</option>
+                      <option value="ADMIN">Administrateur</option>
+                    </select>
+                    <p *ngIf="role.invalid && role.touched" class="text-danger small mt-1">⚠️ Sélectionnez un rôle.</p>
+                  </div>
+                </div>
+
+                <!-- Bouton Suivant / S'inscrire -->
+                <div class="row g-3">
+                  <div class="col-12">
+                    <button class="btn btn-secondary w-100 py-3" type="button" (click)="nextStep()" [disabled]="signupForm.invalid">
+                      {{ signupRequest.role === 'ETUDIANT' ? 'Suivant' : 'S\'inscrire' }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ÉTAPE 2: Sélection des compétences -->
+              <div *ngIf="currentStep === 2">
+                <div class="col-12 mb-3">
+                  <label>Compétences :</label>
+                  <div class="competence-container">
+                    <span *ngFor="let competence of competences"
+                      class="competence-badge"
+                      [class.selected]="signupRequest.competences.includes(competence)"
+                      (click)="toggleCompetence(competence)">
+                      {{ competence }}
+                    </span>
+                  </div>
+                </div>
+                <div class="row g-3">
+                  <div class="col-6">
+                    <button class="btn btn-secondary w-100 py-3" type="button" (click)="previousStep()">Retour</button>
+                  </div>
+                  <div class="col-6">
+                    <button class="btn btn-primary w-100 py-3" type="submit" [disabled]="signupForm.invalid">S'inscrire</button>
+                  </div>
+                </div>
+              </div>
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+            <div class="modal-header border-0">
+                <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex align-items-center justify-content-center">
+                <div class="input-group" style="max-width: 600px;">
+                    <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
+                    <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- Full Screen Search End -->
+  
+  
+  <!-- Contact Start -->
+  <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+            <h5 class="fw-bold text-primary text-uppercase">Contact Us</h5>
+            <h1 class="mb-0">ESPRIT ... Se Former autrement pour une nouvelle génération d'ingénieurs.</h1>
+        </div>
+        <div class="row g-5 mb-5">
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.1s">
+                    <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                        <i class="fa fa-phone-alt text-white"></i>
+                    </div>
+                    <div class="ps-4">
+                        <h5 class="mb-2">Call to ask any question</h5>
+                        <h4 class="text-primary mb-0">(+216) 70 250 000</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.4s">
+                    <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                        <i class="fa fa-envelope-open text-white"></i>
+                    </div>
+                    <div class="ps-4">
+                        <h5 class="mb-2">Email to get free quote</h5>
+                        <h4 class="text-primary mb-0">contactysprit.tn</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.8s">
+                    <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                        <i class="fa fa-map-marker-alt text-white"></i>
+                    </div>
+                    <div class="ps-4">
+                        <h5 class="mb-2">Visit our office</h5>
+                        <h4 class="text-primary mb-0">1, 2 rue André Ampère - 2083 - Pôle Technologique - El Ghazala.</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+  
+        <div class="progress-container">
+          <div class="progress-bar" [style.width.%]="progress"></div>
+          <div class="step" [class.active]="currentStep >= 1">1</div>
+          <div class="step" [class.active]="currentStep >= 2">2</div>
+        </div>
+        <div class="row g-5">
+          <div class="col-lg-6 wow slideInUp" data-wow-delay="0.3s">
+            <form (ngSubmit)="signup()" #signupForm="ngForm">
+              <div class="row g-3">
+                <!-- ÉTAPE 1: Informations personnelles -->
+                <div *ngIf="currentStep === 1">
+                  <!-- Nom & Prénom -->
+                  <div class="row g-3">
+                    <div class="col-md-6 mb-3">
+                      <input type="text" class="form-control border-0 bg-light px-4"
+                        placeholder="First Name" style="height: 55px;"
+                        [(ngModel)]="signupRequest.nom" name="nom" required #nom="ngModel">
+                      <p *ngIf="nom.invalid && nom.touched" class="text-danger small mt-1">⚠️ Le nom est requis.</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <input type="text" class="form-control border-0 bg-light px-4"
+                        placeholder="Last Name" style="height: 55px;"
+                        [(ngModel)]="signupRequest.prenom" name="prenom" required #prenom="ngModel">
+                      <p *ngIf="prenom.invalid && prenom.touched" class="text-danger small mt-1">⚠️ Le prénom est requis.</p>
+                    </div>
+                  </div>
+  
+                  <!-- Email -->
+                  <div class="row g-3">
+                    <div class="col-12 mb-3">
+                      <input type="email" class="form-control border-0 bg-light px-4"
+                        placeholder="Your Email" style="height: 55px;"
+                        [(ngModel)]="signupRequest.email" name="email" required email #email="ngModel">
+                      <p *ngIf="email.invalid && email.touched" class="text-danger small mt-1">⚠️ Email invalide.</p>
+                    </div>
+                  </div>
+  
+                  <!-- Mot de passe & Confirmation -->
+                  <div class="row g-3">
+                    <div class="col-md-6 mb-3">
+                      <input type="password" class="form-control border-0 bg-light px-4"
+                        placeholder="Password" style="height: 55px;"
+                        [(ngModel)]="signupRequest.password" name="password" required minlength="6" #password="ngModel">
+                      <p *ngIf="password.invalid && password.touched" class="text-danger small mt-1">
+                        ⚠️ Le mot de passe doit contenir au moins 6 caractères.
+                      </p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <input type="password" class="form-control border-0 bg-light px-4"
+                        placeholder="Confirm Password" style="height: 55px;"
+                        [(ngModel)]="confirmPassword" name="confirmPassword" required #confirmPasswordField="ngModel">
+                      <p *ngIf="passwordMismatch && confirmPasswordField.touched" class="text-danger small mt-1">
+                        ⚠️ Les mots de passe ne correspondent pas !
+                      </p>
+                    </div>
+                  </div>
+  
+                  <!-- Sélection du rôle -->
+                  <div class="row g-3">
+                    <div class="col-md-12 mb-3">
+                      <select class="form-control border-0 bg-light px-4"
+                        style="height: 55px;" [(ngModel)]="signupRequest.role"
+                        name="role" required #role="ngModel" (change)="onRoleChange()">
+                        <option value="">Select Role</option>
+                        <option value="ETUDIANT">Étudiant</option>
+                        <option value="RESPONSABLE_ENTREPRISE">Entreprise</option>
+                        <option value="ADMIN">Administrateur</option>
+                      </select>
+                      <p *ngIf="role.invalid && role.touched" class="text-danger small mt-1">⚠️ Sélectionnez un rôle.</p>
+                    </div>
+                  </div>
+  
+                  <!-- Bouton Suivant / S'inscrire -->
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <button class="btn btn-secondary w-100 py-3" type="button" (click)="nextStep()" [disabled]="signupForm.invalid">
+                        {{ signupRequest.role === 'ETUDIANT' ? 'Suivant' : 'S\'inscrire' }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+  
+                <!-- ÉTAPE 2: Sélection des compétences -->
+                <div *ngIf="currentStep === 2">
+                  <div class="col-12 mb-3">
+                    <label>Compétences :</label>
+                    <div class="competence-container">
+                      <span *ngFor="let competence of competences"
+                        class="competence-badge"
+                        [class.selected]="signupRequest.competences.includes(competence)"
+                        (click)="toggleCompetence(competence)">
+                        {{ competence }}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row g-3">
+                    <div class="col-6">
+                      <button class="btn btn-secondary w-100 py-3" type="button" (click)="previousStep()">Retour</button>
+                    </div>
+                    <div class="col-6">
+                      <button class="btn btn-primary w-100 py-3" type="submit" [disabled]="signupForm.invalid">S'inscrire</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+  
+          </div>
+  
+          <!-- Image -->
+          <div class="col-lg-6 wow slideInUp" data-wow-delay="0.6s">
+            <img src="assets/frontend/img/esprit.png" alt="Esprit"
+              style="width: 60%; max-width: 60%; height: auto; object-fit: contain; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+          </div>
+        </div>
+  
+  
+  
+  
+  
+  
+  
+    </div>
+  </div>
+  <!-- Contact End -->
+  
+  
+  <!-- Vendor Start
+  <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5 mb-5">
+        <div class="bg-white">
+            <div class="owl-carousel vendor-carousel">
+                <img src="assets/frontend/img/vendor-1.jpg" alt="">
+                <img src="assets/frontend/img/vendor-2.jpg" alt="">
+                <img src="assets/frontend/img/vendor-3.jpg" alt="">
+                <img src="assets/frontend/img/vendor-4.jpg" alt="">
+                <img src="assets/frontend/img/vendor-5.jpg" alt="">
+                <img src="assets/frontend/img/vendor-6.jpg" alt="">
+                <img src="assets/frontend/img/vendor-7.jpg" alt="">
+                <img src="assets/frontend/img/vendor-8.jpg" alt="">
+                <img src="assets/frontend/img/vendor-9.jpg" alt="">
+            </div>
+        </div>
+    </div>
+  </div>
+  Vendor End -->
+  
+  
+  <!-- Footer Start -->
+  <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row gx-5">
+            <div class="col-lg-4 col-md-6 footer-about">
+                <div class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
+                    <a href="index.html" class="navbar-brand">
+                        <h1 class="m-0 text-white"><i class="fa fa-user-tie me-2"></i>Startup</h1>
+                    </a>
+                    <p class="mt-3 mb-4">Lorem diam sit erat dolor elitr et, diam lorem justo amet clita stet eos sit. Elitr dolor duo lorem, elitr clita ipsum sea. Diam amet erat lorem stet eos. Diam amet et kasd eos duo.</p>
+                    <form action="">
+                        <div class="input-group">
+                            <input type="text" class="form-control border-white p-3" placeholder="Your Email">
+                            <button class="btn btn-dark">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-6">
+                <div class="row gx-5">
+                    <div class="col-lg-4 col-md-12 pt-5 mb-5">
+                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                            <h3 class="text-light mb-0">Get In Touch</h3>
+                        </div>
+                        <div class="d-flex mb-2">
+                            <i class="bi bi-geo-alt text-primary me-2"></i>
+                            <p class="mb-0">123 Street, New York, USA</p>
+                        </div>
+                        <div class="d-flex mb-2">
+                            <i class="bi bi-envelope-open text-primary me-2"></i>
+                            <p class="mb-0">infoyxample.com</p>
+                        </div>
+                        <div class="d-flex mb-2">
+                            <i class="bi bi-telephone text-primary me-2"></i>
+                            <p class="mb-0">+012 345 67890</p>
+                        </div>
+                        <div class="d-flex mt-4">
+                            <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-twitter fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square" href="#"><i class="fab fa-instagram fw-normal"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                            <h3 class="text-light mb-0">Quick Links</h3>
+                        </div>
+                        <div class="link-animated d-flex flex-column justify-content-start">
+                            <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
+                            <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
+                            <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
+                            <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Meet The Team</a>
+                            <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a>
+                            <a class="text-light" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                            <h3 class="text-light mb-0">Popular Links</h3>
+                        </div>
+                        <div class="link-animated d-flex flex-column justify-content-start">
+                            <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
+                            <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
+                            <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
+                            <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Meet The Team</a>
+                            <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a>
+                            <a class="text-light" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="container-fluid text-white" style="background: #061429;">
+    <div class="container text-center">
+        <div class="row justify-content-end">
+            <div class="col-lg-8 col-md-6">
+                <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
+                    <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">Your Site Name</a>. All Rights Reserved.
+  
+        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+        Designed by <a class="text-white border-bottom" href="https://htmlcodex.com">HTML Codex</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- Footer End -->

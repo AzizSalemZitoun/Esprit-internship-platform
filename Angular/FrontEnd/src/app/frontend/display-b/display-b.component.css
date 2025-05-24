@@ -1,0 +1,144 @@
+.feed-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background-color: #f3f2ef;
+  }
+  
+  .blog-card {
+    width: 700px; /* Increased width */
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .blog-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .blog-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .author-avatar {
+    width: 55px;
+    height: 55px;
+    background: gray;
+    border-radius: 50%;
+  }
+  
+  .author-info h3 {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .author-info p {
+    font-size: 13px;
+    color: gray;
+    margin: 0;
+  }
+  
+  .blog-content h2 {
+    font-size: 22px;
+    margin-top: 12px;
+  }
+  
+  .blog-content p {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.5;
+  }
+  
+  .blog-footer {
+    margin-top: 12px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+  }
+  
+  .blog-actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+  }
+  
+  .action-btn {
+    background: none;
+    border: none;
+    color: #0073b1;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.2s ease-in-out;
+  }
+  
+  .action-btn:hover {
+    background: rgba(0, 115, 177, 0.1);
+    text-decoration: none;
+  }
+
+  .comment-section {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .comment-input {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: none;
+    font-size: 14px;
+  }
+  
+  .submit-comment {
+    width: 100px;
+    padding: 8px;
+    background-color: #0073b1;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    align-self: flex-end;
+  }
+  
+  .submit-comment:hover {
+    background-color: #005b8f;
+  }
+  .comment {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between content and like button */
+    align-items: center; /* Center items vertically */
+    margin-bottom: 10px; /* Space between comments */
+}
+
+.comment-info {
+    flex-grow: 1; /* Allow the comment info to take up available space */
+}
+
+.like-button {
+    background: none; /* Remove default button background */
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Change cursor to pointer */
+    color: inherit; /* Inherit color from parent */
+}
+
+.liked {
+    color: red; /* Heart turns red when liked */
+}
+
+.not-liked {
+    color: rgb(205, 63, 205); /* Heart becomes transparent when not liked */
+}
+

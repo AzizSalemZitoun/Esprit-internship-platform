@@ -1,0 +1,67 @@
+<div class="col-12 col-xl-8" style="margin-left: 300px;">
+  <div class="card">
+      <div class="card-header">
+          <h4>Liste des Offres de Stage</h4>
+      </div>
+      <div class="card-body">
+          <!-- Advanced Search Bar -->
+          <div class="mb-4">
+              <input type="text" class="form-control" placeholder="Rechercher par titre..." [(ngModel)]="searchTitre" (input)="filterOffres()">
+          </div>
+          <div class="mb-4">
+              <select class="form-control" [(ngModel)]="searchType" (change)="filterOffres()">
+                  <option value="">Tous les types</option>
+                  <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+              </select>
+          </div>
+          <div class="mb-4">
+              <label class="form-label">Compétences</label>
+              <div class="competence-checkboxes">
+                  <div *ngFor="let competence of availableCompetences" class="form-check">
+                      <input
+                          class="form-check-input"
+                          type="checkbox"
+                          [id]="competence"
+                          [value]="competence"
+                          [checked]="selectedCompetences.includes(competence)"
+                          (change)="toggleCompetence(competence)"
+                      >
+                      <label class="form-check-label" [for]="competence">{{ competence }}</label>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Offres List Table -->
+          <div class="table-responsive">
+              <table class="table table-striped">
+                  <thead>
+                      <tr>
+                          <th>Titre</th>
+                          <th>Description</th>
+                          <th>Type</th>
+                          <th>Durée</th>
+                          <th>Compétences</th>
+                          <th>Entreprise</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let offre of filteredOffres">
+                          <td>{{ offre.titre }}</td>
+                          <td>{{ offre.description }}</td>
+                          <td>{{ offre.type }}</td>
+                          <td>{{ offre.duration }}</td>
+                          <td>{{ offre.competences.join(', ') }}</td>
+                          <td>{{ offre.entreprise?.nom }}</td>
+                          <td>
+                              <button class="btn btn-warning btn-sm" (click)="navigateToModifier(offre)">Modifier</button>
+                              <button class="btn btn-danger btn-sm" (click)="deleteOffre(offre.idOffre)">Supprimer</button>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+         
+      </div>
+  </div>
+</div>

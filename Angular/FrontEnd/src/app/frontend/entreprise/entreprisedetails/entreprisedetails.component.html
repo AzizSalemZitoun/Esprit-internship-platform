@@ -1,0 +1,85 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Centering the logo -->
+    <div class="text-center w-100">
+      <img src="/assets/frontend/img/esprit.jpg" alt="Logo" height="50">
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Offres</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Entreprise</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Enterprise Details Content -->
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <div *ngIf="isLoading; else content">
+            <p>Loading enterprise details...</p>
+          </div>
+
+          <ng-template #content>
+            <div *ngIf="error; else enterpriseDetails">
+              <p class="error">{{ error }}</p>
+            </div>
+
+            <ng-template #enterpriseDetails>
+              <div *ngIf="entreprise">
+                <!-- Centering the logo -->
+                <div class="text-center">
+                  <img [src]="entreprise.logoUrl" alt="Logo" height="100">
+                </div>
+                
+                <h2 class="card-title"><strong></strong> {{ entreprise.nom }}</h2>
+                <p class="card-text"><strong>Address:</strong> {{ entreprise.adress }}</p>
+                <p class="card-text"><strong>Representative:</strong> {{ entreprise.representative }}</p>
+                <p class="card-text"><strong>Site:</strong> {{ entreprise.website }}</p>
+                <p class="card-text"><strong>Description:</strong> {{ entreprise.description }}</p>
+
+              </div>
+            </ng-template>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Most Demanded Skills Section -->
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title"><strong>Most Demanded Skills:</strong></h2>
+          <div *ngIf="fetchCompetencesStats">
+            <canvas id="competencesChart"></canvas>
+          </div>
+          <div *ngIf="!fetchCompetencesStats && !isLoading">
+            <p>No skills data available.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

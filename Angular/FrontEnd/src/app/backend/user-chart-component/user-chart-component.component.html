@@ -1,0 +1,26 @@
+<div>
+  <h3>Répartition des utilisateurs par rôle</h3>
+  <canvas baseChart
+    [data]="roleData"
+    [options]="barChartOptions"
+    [type]="'bar'">
+  </canvas>
+</div>
+
+<div>
+  <h3>Acceptation des utilisateurs</h3>
+  <canvas baseChart
+    [data]="acceptationData"
+    [options]="pieChartOptions"
+    [type]="'pie'">
+  </canvas>
+</div>
+
+<div>
+  <h3>Vérification des utilisateurs</h3>
+  <canvas baseChart
+    [data]="verificationData"
+    [options]="pieChartOptions"
+    [type]="'doughnut'">
+  </canvas>
+</div>

@@ -1,0 +1,31 @@
+/* Sidebar styling */
+.sidebar {
+    position: fixed; /* Fixed position to the right of the page */
+    top: 0; /* Align to the top */
+    right: 0; /* Align to the right */
+    height: 100vh; /* Full viewport height */
+    width: 300px; /* You can adjust the width as needed */
+    background-color: #f8f9fa; /* Light background color */
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for separation */
+    padding: 20px; /* Add some padding inside the sidebar */
+  }
+  
+  /* Optional: Adjust the title and content in the sidebar */
+  .sidebar h4 {
+    color: #d32f2f;
+    font-weight: bold;
+  }
+  
+  .sidebar p {
+    margin: 10px 0;
+  }
+  
+  .sidebar a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    text-decoration: underline;
+  }
+  
